@@ -37,8 +37,8 @@ jobs:
         id: filter
         run: |
           WATCH_DIR='src/emu/'
+          DEFAULT_BRANCH='main'
 
-          default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
           all_changes=$(git diff --name-only ${default_branch}...HEAD)
 
           printf '%s\n' "--------- ALL CHANGES ---------"
