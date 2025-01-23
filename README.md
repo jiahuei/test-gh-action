@@ -1,3 +1,3 @@
 # test-gh-action
 
-Commit 2
+Commit 3
