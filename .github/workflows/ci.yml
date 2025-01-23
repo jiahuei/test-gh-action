@@ -26,45 +26,12 @@ permissions:
 jobs:
   check_changes:
     runs-on: ubuntu-latest
-    outputs:
-      has_changes: ${{ steps.filter.outputs.has_changes }}
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Check
-        run: echo $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')
       - name: Check for changes
-        id: filter
-        shell: bash
-        run: |
-          WATCH_DIR='src/emu/'
-
-          # Try to get the default branch dynamically, or fall back to 'main'
-          default_branch=$(git remote show origin | grep 'HEAD branch' | awk '{print $3}')
-          if [ -z "$default_branch" ]; then
-            default_branch="main"  # Fallback to 'main' if the default branch cannot be determined
-          fi
-
-          # List changes
-          all_changes=$(git diff --name-only origin/${default_branch}...HEAD)
-
-          printf '%s\n' "--------- ALL CHANGES ---------"
-          printf '%s\n' $all_changes
-          printf '%s\n' "-------------------------------"
-
-          # Filter changes
-          changes=$(echo "$all_changes" | grep "^${WATCH_DIR}")
-          if [ -n "$changes" ]; then
-          echo "Changes detected in ${WATCH_DIR} directory."
-          # echo "has_changes=true" >> $GITHUB_OUTPUT
-          else
-          echo "No changes in ${WATCH_DIR} directory."
-          # echo "has_changes=false" >> $GITHUB_OUTPUT
-          fi
+        id: check-changes
+        uses: jiahuei/check-changes-action@v0
+        with:
+          watch-dir: "src/emu/"
 
   tests:
     runs-on: ubuntu-latest
