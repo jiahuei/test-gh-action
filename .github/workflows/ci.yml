@@ -48,8 +48,6 @@ jobs:
           if [ -z "$default_branch" ]; then
             default_branch="main"  # Fallback to 'main' if the default branch cannot be determined
           fi
-          # Fetch the default branch explicitly
-          git fetch origin ${default_branch}
 
           # List changes
           all_changes=$(git diff --name-only origin/${default_branch}...HEAD)
