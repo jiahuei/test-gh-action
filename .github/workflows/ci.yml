@@ -37,6 +37,7 @@ jobs:
 
       - name: Check for changes
         id: filter
+        shell: bash
         run: |
           WATCH_DIR='src/emu/'
           DEFAULT_BRANCH='main'
