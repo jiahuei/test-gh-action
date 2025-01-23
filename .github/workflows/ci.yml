@@ -33,7 +33,7 @@ jobs:
         id: check-changes
         uses: jiahuei/check-changes-action@v0
         with:
-          watch-dir: "src/emu/python"
+          watch-dir: "src/emu"
 
   tests:
     runs-on: ubuntu-latest
