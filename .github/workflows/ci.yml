@@ -52,7 +52,7 @@ jobs:
           git fetch origin ${default_branch}
 
           # List changes
-          all_changes=$(git diff --name-only ${default_branch}...HEAD)
+          all_changes=$(git diff --name-only origin/${default_branch}...HEAD)
 
           printf '%s\n' "--------- ALL CHANGES ---------"
           printf '%s\n' $all_changes
