@@ -35,6 +35,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Check
+        run: echo $(git remote show origin | grep 'HEAD branch' | awk '{print $3}')
       - name: Check for changes
         id: filter
         shell: bash
