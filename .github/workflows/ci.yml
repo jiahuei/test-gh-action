@@ -38,8 +38,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     needs: check_changes
-    if: needs.check_changes.outputs.has-changes == 'true'
-
+    if: needs.check_changes.outputs.has-changes == 'true' # Only run if there are changes
     steps:
       - name: Echo
         run: echo "Changes detected"
