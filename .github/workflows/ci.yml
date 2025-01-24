@@ -27,7 +27,7 @@ jobs:
   check_changes:
     runs-on: ubuntu-latest
     outputs:
-      has-changes: ${{ steps.check.outputs.has-changes == 1 }}
+      has-changes: ${{ steps.check.outputs.has-changes }}
     steps:
       - name: Check for changes
         id: check
@@ -38,7 +38,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     needs: check_changes
-    if: ${{ needs.check_changes.outputs.has-changes }}
+    if: ${{ needs.check_changes.outputs.has-changes == 'true' }}
     steps:
       - name: Echo
         run: echo ${{needs.check_changes.outputs.has-changes}}
