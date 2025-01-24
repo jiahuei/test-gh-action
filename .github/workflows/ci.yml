@@ -41,4 +41,4 @@ jobs:
     if: needs.check_changes.outputs.has-changes
     steps:
       - name: Echo
-        run: echo "Changes detected"
+        run: echo ${{needs.check_changes.outputs.has-changes}}
