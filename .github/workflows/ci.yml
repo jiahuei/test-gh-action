@@ -62,13 +62,14 @@ jobs:
   task0:
     runs-on: ubuntu-latest
     name: task 0
+    if: always()
     steps:
       - name: Get current time
         run: date
 
   task1:
     runs-on: ubuntu-latest
-    name: task 0
+    name: task 1
     needs: task0
     steps:
       - name: Fail
