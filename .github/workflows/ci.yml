@@ -62,7 +62,6 @@ jobs:
   task0:
     runs-on: ubuntu-latest
     name: task 0
-    needs: tests
     steps:
       - name: Get current time
         run: date
