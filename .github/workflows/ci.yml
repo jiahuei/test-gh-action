@@ -47,7 +47,7 @@ jobs:
       - name: Echo
         run: echo ${{needs.check_changes.outputs.has-changes}}
 
-  tests_on_noop:
+  tests_noop:
     runs-on: ubuntu-latest
     name: tests
     needs: check_changes
@@ -58,3 +58,19 @@ jobs:
     steps:
       - name: No-op
         run: echo ${{needs.check_changes.outputs.has-changes}}
+
+  task0:
+    runs-on: ubuntu-latest
+    name: task 0
+    needs: tests
+    steps:
+      - name: Get current time
+        run: date
+
+  task1:
+    runs-on: ubuntu-latest
+    name: task 0
+    needs: task0
+    steps:
+      - name: Fail
+        run: exit 1
