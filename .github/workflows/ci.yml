@@ -62,9 +62,13 @@ jobs:
   task0:
     runs-on: ubuntu-latest
     name: task 0
+    needs: check_changes
     if: always()
     steps:
       - name: Get current time
+        if: ${{ needs.check_changes.outputs.has-changes == 'true' }}
+        run: date
+      - name: Get current time 2
         run: date
 
   task1:
