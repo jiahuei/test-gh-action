@@ -37,6 +37,7 @@ jobs:
 
   tests:
     runs-on: ubuntu-latest
+    name: tests
     needs: check_changes
     if: ${{ needs.check_changes.outputs.has-changes == 'true' }}
     strategy:
