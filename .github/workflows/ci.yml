@@ -33,12 +33,15 @@ jobs:
         id: check
         uses: jiahuei/check-changes-action@v0
         with:
-          watch-dirs: "python/"
+          watch-dirs: "python/ src/"
 
   tests:
     runs-on: ubuntu-latest
     needs: check_changes
     if: ${{ needs.check_changes.outputs.has-changes == 'true' }}
+    strategy:
+      matrix:
+        python-version: ["3.10"]
     steps:
       - name: Echo
         run: echo ${{needs.check_changes.outputs.has-changes}}
