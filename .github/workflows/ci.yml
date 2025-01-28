@@ -46,3 +46,15 @@ jobs:
     steps:
       - name: Echo
         run: echo ${{needs.check_changes.outputs.has-changes}}
+
+  tests_on_no_change:
+    runs-on: ubuntu-latest
+    name: tests
+    needs: check_changes
+    if: ${{ needs.check_changes.outputs.has-changes == 'false' }}
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+    steps:
+      - name: Echo
+        run: echo ${{needs.check_changes.outputs.has-changes}}
